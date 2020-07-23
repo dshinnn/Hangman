@@ -18,7 +18,7 @@ Create a simulation of Hangman.  One user enters the word to guess and each char
 <h2>Installation</h2>
 
 1. Download or copy the code in the main.c
-2. Import it in a C IDE or use an online source (https://www.onlinegdb.com/online_c++_compiler)
+2. Import it in a C++ IDE or use an online source (https://www.onlinegdb.com/online_c++_compiler)
 3. Run the code
 
 <h2>Project status</h2>
