@@ -1,158 +1,30 @@
-/*************************************************************************
- * AUTHOR           :  David Shin
- * Project          :  Hangman
- ************************************************************************/
-#include <iostream>
-#include <cctype>
-#include <string>
+<h1 align="center">Hangman</h1>
+<p align="center"><strong>This is a school project which required us to create a game of Hangman</strong>
+</p>
+<h2>About</h2>
+    This school project allowed to learn and the practice the usage of conditional statements.
 
-using namespace std;
-/*************************************************************************
-* Project - Hangman
-* _________________________________________________________________________
-* This program executes a game of hangman.  The user has seven tries to
-* guess the word and if they fail they lose, else they win.
-* _________________________________________________________________________
-* INPUT:
-*    phrase         :  Asks for the hidden word
-*    guess          :  Asks for a letter used to guess the hidden word
-* OUTPUT:
-*    nPhrase        :  Outputs the word inputted as a hidden word (shows
-*                      dashes)
-*    guesslist      :  Stores guessed letters and outputs them
-*__________________________________________________________________________
-*************************************************************************/
-//  setupUnsolved Prototype
-string setupUnsolved(string phrase);
-//  udateUnsolved Prototype
-string updateUnsolved(string phrase, string unsolved, char guess);
-//  getGuess Prototype
-char getGuess(string prevGuesses);
+<h2>Goal and requirements</h2>
 
-int main()
-{
-    string phrase;          //  INPUT - Grabs the word(s) for hangman
-    string nPhrase;         //  OUTPUT - Outputs the hidden word(s)
-    string uPhrase;         //  Used to update the updateUnsolved parameter
-    string guesslist;       //  Used to store the guessed letters
-    char letter;            //  Used to input getGuess return
-    int attempts;           //  Counts the attempts left
+<strong>Goal:</strong> Create an application that allows users to select one of the eight mathematical operation and return the results.
 
-    cout << "Enter phrase: \n";
-    //  INPUT - Initializes phrase
-    getline(cin, phrase);
-    //system("CLS");
+<strong>Requirements: </strong>
+<ul>
+  <li>Allow the user to select a mathematical operation</li>
+  <li>Perform selected operation</li>
+  <li>Return results</li>
+</ul>
 
-    //  Calls setupUnsolved and initializes nPhrase
-    nPhrase = setupUnsolved(phrase);
-    //  OUTPUT - outputs nPhrase
-    cout << "Phrase: " << nPhrase << endl;
+<h2>Key learnings</h2>
 
-    //  Initializes guesslist
-    guesslist = "";
-    //  Initializes attempts
-    attempts = 7;
-    //  Calls updateUnsolved initializes uPhrase
-    uPhrase = updateUnsolved(phrase, nPhrase, letter);
-    //  Loops the game
-    while(attempts > 0)
-    {
-        //  Initializes letter
-        letter = getGuess(guesslist);
-        //  Adds guessed letter to guesslist
-        guesslist += letter;
-        //  Redefinites uPhrase so it can used to update
-        uPhrase = updateUnsolved(phrase, uPhrase, letter);
-        //system("CLS");
-        //  Checks to see if the guess was correct
-        if(phrase.find(letter) == string::npos
-                && phrase.find(toupper(letter)) == string::npos
-                && phrase.find(tolower(letter)) == string::npos)
-        {
-            cout << --attempts << " incorrect guesses left\n";
-        }
-        cout /*"Phrase:"*/ << updateUnsolved(phrase, uPhrase, letter);
-        cout << endl;
+- Usage of conditional statements
 
-        //  OUTPUT - Outputs guesslist
-        //cout << "Guessed so far: " << guesslist << endl;
+<h2>Installation</h2>
 
-        //  Checks if the user guessed the word(s) properly
-        if(uPhrase == phrase)
-        {
-            cout << "Congratualations!! You won!" << endl;
-            break;
-        }
+1. Download or copy the code in the main.c
+2. Import it in a C IDE or use an online source (https://www.onlinegdb.com/online_c++_compiler)
+3. Run the code
 
-    }
-    //  Shows when the user loses
-    if(attempts == 0)
-    {
-        cout << "You lost!" << endl;
-    }
-}
+<h2>Project status</h2>
+Completed
 
-/// @brief Puts dashes in place of alphabetic characters in the phrase.
-/// @param phrase the phrase to be solved
-/// @return the phrase with all alphabetic characters converted to dashes
-string setupUnsolved(string phrase)
-{
-    int i;
-    for(i = 0; i < phrase.size(); i++)
-    {
-        if(isalpha(phrase[i]))
-        {
-            phrase[i] = '-';
-        }
-        else
-        {
-            phrase[i] = phrase[i];
-        }
-    }
-    return phrase;
-}
-
-/// @brief Replaces the dashes with the guessed character.
-/// @param phrase the phrase to be solved
-/// @param unsolved the phrase with dashes for all unsolved characters
-/// @param guess the char containing the current guessed character
-/// @return the new unsolved string with dashes replaced by new guess
-string updateUnsolved(string phrase, string unsolved, char guess)
-{
-    int i;  //  Used as a counter
-    for(i = 0; i < unsolved.size(); i++)
-    {
-        if (islower(guess) && phrase[i] == guess){
-
-            unsolved[i] = guess;
-        }
-        else if (islower(guess) && phrase[i] == toupper(guess)){
-            unsolved[i] = toupper(guess);
-
-        }
-    }
-    return unsolved;
-}
-
-/// @brief Gets valid guess as input.
-///
-///    A guess is taken as input as a character. It is valid if
-///    1) it is an alphabetic character; and
-///    2) the character has not already been guessed
-///
-/// @param prevGuesses the string containing all characters guessed so far
-/// @return a valid guess and only a valid guess as a character
-char getGuess(string prevGuesses)
-{
-    char guess;
-    cout << "Enter a guess: \n";
-    //  INPUT - Initializes guess
-    cin >> guess;
-    while(!(isalpha(guess)) || prevGuesses.find(guess) != string::npos
-          || isupper(guess))
-    {
-        cout << "Enter a guess: \n";
-        cin >> guess;
-    }
-    return guess;
-}
