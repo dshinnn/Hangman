@@ -21,6 +21,4 @@ Create a simulation of Hangman.  One user enters the word to guess and each char
 2. Import it in a C++ IDE or use an online source (https://www.onlinegdb.com/online_c++_compiler)
 3. Run the code
 
-<h2>Project status</h2>
-Completed
 
